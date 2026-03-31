@@ -59,6 +59,12 @@ Si arrancas en Windows y ves `sqlite3.OperationalError: unable to open database 
 ./scripts/run_ui.sh
 ```
 
+Si ves `ModuleNotFoundError: No module named 'app'` en Streamlit:
+
+1. Ejecuta la UI desde `./scripts/run_ui.sh` (el script ya cambia al directorio correcto).
+2. Evita lanzar `streamlit run` apuntando al fichero con una ruta externa desde otro directorio.
+3. Si lo lanzas manualmente, primero entra en `rfp_semantic_pipeline/`.
+
 ## Flujo funcional
 1. Crear workspace.
 2. Subir PDFs.
