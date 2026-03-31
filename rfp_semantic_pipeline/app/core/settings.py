@@ -31,7 +31,19 @@ class Settings(BaseSettings):
     max_chunk_chars: int = 1200
     chunk_overlap_chars: int = 200
 
+    @property
+    def project_root(self) -> Path:
+        return Path(__file__).resolve().parents[2]
+
+    def resolve_path(self, value: Path) -> Path:
+        return value if value.is_absolute() else (self.project_root / value).resolve()
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
-    return Settings()
+    settings = Settings()
+    settings.data_dir = settings.resolve_path(settings.data_dir)
+    settings.sqlite_path = settings.resolve_path(settings.sqlite_path)
+    settings.taxonomy_path = settings.resolve_path(settings.taxonomy_path)
+    settings.faiss_index_path = settings.resolve_path(settings.faiss_index_path)
+    return settings

@@ -48,10 +48,22 @@ pip install -r requirements.txt
 ./scripts/run_api.sh
 ```
 
+Si arrancas en Windows y ves `sqlite3.OperationalError: unable to open database file`, verifica:
+
+1. Que has copiado `.env.example` a `.env` en la raíz de `rfp_semantic_pipeline/`.
+2. Que `SQLITE_PATH` apunta a una ruta válida y escribible.
+3. Que lanzas los comandos desde la carpeta del proyecto (`rfp_semantic_pipeline`).
+
 ## Ejecutar UI Streamlit
 ```bash
 ./scripts/run_ui.sh
 ```
+
+Si ves `ModuleNotFoundError: No module named 'app'` en Streamlit:
+
+1. Ejecuta la UI desde `./scripts/run_ui.sh` (el script ya cambia al directorio correcto).
+2. Evita lanzar `streamlit run` apuntando al fichero con una ruta externa desde otro directorio.
+3. Si lo lanzas manualmente, primero entra en `rfp_semantic_pipeline/`.
 
 ## Flujo funcional
 1. Crear workspace.
